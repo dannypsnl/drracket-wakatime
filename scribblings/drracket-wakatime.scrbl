@@ -1,11 +1,11 @@
 #lang scribble/manual
 
-@require[@for-label[racket-project
+@require[@for-label[drracket-wakatime
                     racket/base]]
 
-@title{racket-project}
+@title{drracket-wakatime}
 @author{Lîm Tsú-thuàn}
 
-@defmodule[racket-project]
+@defmodule[drracket-wakatime]
 
 Package Description Here
