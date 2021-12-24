@@ -19,7 +19,7 @@
 (displayln
  (send server get-auth-request-url
        #:client client
-       #:scopes '("email,read_stats")
+       #:scopes '("email,read_stats,read_logged_time")
        #:state "hello"
        #:redirect-uri "https://wakatime.com/oauth/test"))
 
@@ -31,8 +31,12 @@
                     auth-code
                     #:redirect-uri "https://wakatime.com/oauth/test"))
 
-(define token (send oauth2result get-access-token))
-(define res (get (string-append @api-prefix "users/current")
-                 #:auth (bearer-auth token)))
+(define (wakatime api-uri)
+  (response-json (get (string-append @api-prefix api-uri)
+                      #:auth (bearer-auth (send oauth2result get-access-token)))))
 
-(response-json res)
+; (wakatime "users/current")
+; (wakatime "editors")
+(define projects (hash-ref (wakatime "users/current/projects") 'data))
+(for ([proj projects])
+  (displayln (hash-ref proj 'name)))
