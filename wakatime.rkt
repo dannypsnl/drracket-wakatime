@@ -1,6 +1,7 @@
 #lang racket
 
-(require webapi/oauth2)
+(require webapi/oauth2
+         net/http-easy)
 
 (define @api-prefix "https://wakatime.com/api/v1/")
 
@@ -29,3 +30,9 @@
                     client
                     auth-code
                     #:redirect-uri "https://wakatime.com/oauth/test"))
+
+(define token (send oauth2result get-access-token))
+(define res (get (string-append @api-prefix "users/current")
+                 #:auth (bearer-auth token)))
+
+(response-json res)
