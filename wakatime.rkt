@@ -1,9 +1,6 @@
 #lang racket
 
-(require webapi/oauth2
-         net/http-easy)
-
-(define @api-prefix "https://wakatime.com/api/v1/")
+(require webapi/oauth2)
 
 (define server
   (oauth2-auth-server
@@ -19,7 +16,7 @@
 (displayln
  (send server get-auth-request-url
        #:client client
-       #:scopes '("email,read_stats,read_logged_time")
+       #:scopes '("email,read_stats,write_logged_time,read_logged_time")
        #:state "hello"
        #:redirect-uri "https://wakatime.com/oauth/test"))
 
@@ -31,12 +28,4 @@
                     auth-code
                     #:redirect-uri "https://wakatime.com/oauth/test"))
 
-(define (wakatime api-uri)
-  (response-json (get (string-append @api-prefix api-uri)
-                      #:auth (bearer-auth (send oauth2result get-access-token)))))
-
-; (wakatime "users/current")
-; (wakatime "editors")
-(define projects (hash-ref (wakatime "users/current/projects") 'data))
-(for ([proj projects])
-  (displayln (hash-ref proj 'name)))
+(send oauth2result get-access-token)
