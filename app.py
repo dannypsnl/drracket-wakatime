@@ -1,10 +1,8 @@
 import hashlib
 import os
 import sys
+import time
 from rauth import OAuth2Service
-
-if sys.version_info[0] == 3:
-    raw_input = input
 
 client_id = 'NEjAViaya1siVUyCew1hnrsz'
 secret = 'sec_JvGhfUDNkny27kAGeOLIV61eOCG4I4GjaaL9LIPtKDxTwLLLXQg1LMjYoXDWY5NvzZRZ2EFMtXmJFX0d'
@@ -31,7 +29,7 @@ print('*' * 80)
 print(url)
 print('*' * 80)
 print('**** After clicking Authorize, paste code here and press Enter ****')
-code = raw_input('Enter code from url: ')
+code = input('Enter code from url: ')
 
 # Make sure returned state has not changed for security reasons, and exchange
 # code for an Access Token.
@@ -48,3 +46,10 @@ print('Authenticated via OAuth as {0}'.format(user['data']['email']))
 print("Getting user's coding stats from API...")
 stats = session.get('users/current/stats')
 print(stats.text)
+
+result = session.post("users/current/heartbeats",
+                      data={
+                          'entity': '/Users/linzizhuan/racket.tw/drracket-wakatime/wakatime.rkt',
+                          'time': time.time()
+                      })
+print(result.text)
