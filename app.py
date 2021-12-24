@@ -6,8 +6,8 @@ from rauth import OAuth2Service
 if sys.version_info[0] == 3:
     raw_input = input
 
-client_id = raw_input('Enter your App Id: ')
-secret = raw_input('Enter your App Secret: ')
+client_id = 'NEjAViaya1siVUyCew1hnrsz'
+secret = 'sec_JvGhfUDNkny27kAGeOLIV61eOCG4I4GjaaL9LIPtKDxTwLLLXQg1LMjYoXDWY5NvzZRZ2EFMtXmJFX0d'
 
 service = OAuth2Service(
     client_id=client_id,  # your App ID from https://wakatime.com/apps
