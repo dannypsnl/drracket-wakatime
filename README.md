@@ -1,5 +1,8 @@
 # drracket-wakatime
 
+[![Racket Test](https://github.com/racket-tw/drracket-wakatime/actions/workflows/racket-gui-test.yml/badge.svg)](https://github.com/racket-tw/drracket-wakatime/actions/workflows/racket-gui-test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/racket-tw/drracket-wakatime/badge.svg?branch=develop)](https://coveralls.io/github/racket-tw/drracket-wakatime?branch=develop)
+
 Install `wakatime-cli` is required for the plugin, you can get it via
 
 ```shell
