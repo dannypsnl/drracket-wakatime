@@ -4,6 +4,7 @@
 
 (require drracket/tool
          framework
+         racket/gui/base
          "send-heartbeat.rkt"
          "find-project.rkt")
 
@@ -12,7 +13,10 @@
     (import drracket:tool^)
     (export drracket:tool-exports^)
 
-    (define (phase1) (void))
+    (define (phase1)
+      (unless (get-preference 'wakatime-api-key)
+        (put-preferences '(wakatime-api-key)
+                         (list (get-text-from-user "wakatime api-key" "enter key:")))))
     (define (phase2) (void))
 
     (define drracket-editor-mixin
@@ -25,6 +29,6 @@
             (if filename
                 (find-project (path-only filename))
                 #f))
-          (send-heartbeat #:file filename #:project project))))
+          (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project))))
 
     (drracket:get/extend:extend-definitions-text drracket-editor-mixin)))

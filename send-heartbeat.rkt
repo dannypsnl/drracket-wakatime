@@ -3,10 +3,13 @@
 
 (require racket/system)
 
-(define (send-heartbeat #:file filename #:project [project #f])
+(define (send-heartbeat #:file filename #:key [key #f] #:project [project #f])
   (define cmd "wakatime-cli --entity $filename --language racket --plugin drracket-wakatime --write")
   (set! cmd (if project
                 (string-append cmd " --project $project")
+                cmd))
+  (set! cmd (if key
+                (string-append cmd " --key $key")
                 cmd))
   (system cmd))
 
