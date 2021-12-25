@@ -1,4 +1,4 @@
-#lang formatted-string racket
+#lang racket
 
 (provide tool@)
 
@@ -23,12 +23,20 @@
       (mixin (drracket:unit:definitions-text<%> racket:text<%>) ()
         (super-new)
 
-        (define/augment (on-change)
+        (define (basename path)
+          (define-values [base file dir?] (split-path path))
+          (path->string file))
+
+        (define (local-send-heartbeat)
           (define filename (send this get-filename))
-          (define project
-            (if filename
-                (find-project (path-only filename))
-                #f))
-          (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project))))
+          (when filename
+            (define project
+              (if filename
+                  (basename (find-project-dir (path-only filename)))
+                  #f))
+            (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project)))
+
+        (define/augment (on-change)
+          (local-send-heartbeat))))
 
     (drracket:get/extend:extend-definitions-text drracket-editor-mixin)))
