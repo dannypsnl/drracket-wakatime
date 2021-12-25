@@ -4,8 +4,8 @@ import sys
 import time
 from rauth import OAuth2Service
 
-client_id = 'NEjAViaya1siVUyCew1hnrsz'
-secret = 'sec_JvGhfUDNkny27kAGeOLIV61eOCG4I4GjaaL9LIPtKDxTwLLLXQg1LMjYoXDWY5NvzZRZ2EFMtXmJFX0d'
+client_id = input('Enter client id: ')
+secret = input('Enter secret: ')
 
 service = OAuth2Service(
     client_id=client_id,  # your App ID from https://wakatime.com/apps
