@@ -6,8 +6,7 @@
 
 (define collection "drracket-wakatime")
 (define deps '("base"
-               "webapi"
-               "http-easy"))
+               "formatted-string"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/drracket-wakatime.scrbl" ())))
 (define pkg-desc "Wakatime integration")
