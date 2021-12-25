@@ -10,8 +10,8 @@
                 cmd))
   (system cmd))
 
-(module+ test
-  (require rackunit)
+#;(module+ test
+    (require rackunit)
 
-  (check-eq? (send-heartbeat #:file "main.rkt" #:project "drracket-wakatime-test")
-             #t))
+    (check-eq? (send-heartbeat #:file "main.rkt" #:project "drracket-wakatime-test")
+               #t))
