@@ -9,6 +9,8 @@ Install `wakatime-cli` is required for the plugin, you can get it via
 brew install wakatime-cli
 ```
 
+You would need to enter your API key when first time use this plugin, you can get it from [wakatime account setting](https://wakatime.com/settings/account), by copy **Secret API Key**. Once this all done, you should be able to see your wakatime report on your [wakatime dashboard](https://wakatime.com/dashboard)!
+
 ### reference
 
 1. [vim implementation](https://github.com/wakatime/vim-wakatime/blob/master/plugin/wakatime.vim#L471)
