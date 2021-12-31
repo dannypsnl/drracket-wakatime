@@ -10,6 +10,12 @@ brew install wakatime-cli # macOS
 nix-env -iA nixpkgs.wakatime # Linux
 ```
 
+Install
+
+```
+raco pkg install --auto drracket-wakatime
+```
+
 You would need to enter your API key when first time use this plugin, you can get it from [wakatime account setting](https://wakatime.com/settings/account), by copy **Secret API Key**. Once this all done, you should be able to see your wakatime report on your [wakatime dashboard](https://wakatime.com/dashboard)!
 
 ### reference
