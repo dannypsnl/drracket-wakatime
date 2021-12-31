@@ -19,8 +19,9 @@
   (close-input-port stderr)
   (close-output-port stdin))
 
-#;(module+ test
-    (require rackunit)
+(module+ test
+  (require rackunit)
 
+  (when (find-executable-path "wakatime-cli")
     (check-eq? (send-heartbeat #:file "main.rkt" #:project "drracket-wakatime-test")
-               (void)))
+               (void))))
