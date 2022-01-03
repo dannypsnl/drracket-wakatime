@@ -28,13 +28,15 @@
           (path->string file))
 
         (define (local-send-heartbeat)
-          (define filename (send this get-filename))
-          (when filename
-            (define project
-              (if filename
-                  (basename (find-project-dir (path-only filename)))
-                  #f))
-            (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project)))
+          (thread
+           (lambda ()
+             (define filename (send this get-filename))
+             (when filename
+               (define project
+                 (if filename
+                     (basename (find-project-dir (path-only filename)))
+                     #f))
+               (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project)))))
 
         (define/augment (on-change)
           (local-send-heartbeat))))
