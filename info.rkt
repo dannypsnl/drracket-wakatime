@@ -6,6 +6,7 @@
 
 (define collection "drracket-wakatime")
 (define deps '("base"
+               "gui-lib"
                "formatted-string"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/drracket-wakatime.scrbl" ())))
