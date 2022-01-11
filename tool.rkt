@@ -23,10 +23,6 @@
       (mixin (drracket:unit:definitions-text<%> racket:text<%>) ()
         (super-new)
 
-        (define (basename path)
-          (define-values [base file dir?] (split-path path))
-          (path->string file))
-
         (define (local-send-heartbeat)
           (thread
            (lambda ()
