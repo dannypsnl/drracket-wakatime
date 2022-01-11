@@ -3,11 +3,8 @@
          find-project-dir)
 
 (define (basename path)
-  (define maybe-cut? (split-path path))
-  (if maybe-cut?
-      (let-values ([(base file dir?) maybe-cut?])
-        (path->string file))
-      #f))
+  (define-values (base file dir?) (split-path path))
+  base)
 
 ; return where we find `info.rkt` or `.git/`, else `#f`
 (define (find-project-dir dir)
