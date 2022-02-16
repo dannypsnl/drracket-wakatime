@@ -32,8 +32,7 @@
                  (if filename
                      (find-project-dir (path-only filename))
                      #f))
-               (when project
-                 (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project))))))
+               (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project)))))
 
         (define/augment (on-change)
           (local-send-heartbeat))))
