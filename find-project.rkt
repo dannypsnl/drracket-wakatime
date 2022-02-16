@@ -1,6 +1,5 @@
 #lang racket/base
-(provide basename
-         find-project-dir)
+(provide find-project-dir)
 
 (define (basename path)
   (define-values (base file dir?) (split-path path))
