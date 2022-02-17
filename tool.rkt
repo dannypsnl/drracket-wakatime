@@ -27,12 +27,10 @@
           (thread
            (lambda ()
              (define filename (send this get-filename))
-             (when filename
-               (define project
-                 (if filename
-                     (find-project-dir (path-only filename))
-                     #f))
-               (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project)))))
+             (if filename
+                 (let ([project (and filename (find-project-dir (path-only filename)))])
+                   (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project))
+                 (send-heartbeat #:file "Untitled.rkt" #:key (get-preference 'wakatime-api-key))))))
 
         (define/augment (on-change)
           (local-send-heartbeat))))
