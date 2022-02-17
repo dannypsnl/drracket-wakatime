@@ -28,7 +28,7 @@
            (lambda ()
              (define filename (send this get-filename))
              (if filename
-                 (let ([project (and filename (find-project-dir (path-only filename)))])
+                 (let ([project (find-project-dir (path-only filename))])
                    (send-heartbeat #:file filename #:key (get-preference 'wakatime-api-key) #:project project))
                  (send-heartbeat #:file "Untitled.rkt" #:key (get-preference 'wakatime-api-key))))))
 
