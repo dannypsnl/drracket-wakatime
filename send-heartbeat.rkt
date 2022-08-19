@@ -1,6 +1,5 @@
 #lang formatted-string racket/base
 (provide send-heartbeat)
-
 (require racket/system
          racket/port
          racket/match)
