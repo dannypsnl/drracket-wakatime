@@ -5,7 +5,10 @@
          racket/match)
 
 (define (send-heartbeat #:file filename #:key [key #f] #:project [project #f])
-  (define cmd "$(find-executable-path "wakatime-cli") --entity $filename --language racket --plugin drracket-wakatime --write")
+  (define exe (find-executable-path "wakatime-cli"))
+  (unless exe
+    (error 'executable "cannot find executable in $PATH, please check your environment setup"))
+  (define cmd "$exe --entity $filename --language racket --plugin drracket-wakatime --write")
   (set! cmd (if project (string-append cmd " --project $project") cmd))
   (set! cmd (if key (string-append cmd " --key $key") cmd))
   (match-define (list stdout stdin pid stderr run)
