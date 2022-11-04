@@ -25,18 +25,11 @@ jobs:
       COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
     steps:
       - uses: actions/checkout@master
-      - name: Cache installed packages
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cache/racket
-            ~/.local/share/racket
-          key: ${{ runner.os }}-primes
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v1.7
+        uses: Bogdanp/setup-racket@v1.9
         with:
           architecture: "x64"
-          distribution: "minimal"
+          distribution: "full"
           variant: "CS"
           version: "stable"
           packages: "cover, cover-coveralls"
