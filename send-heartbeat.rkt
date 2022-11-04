@@ -7,7 +7,7 @@
 (define (send-heartbeat #:file filename #:key [key #f] #:project [project #f])
   (define exe (find-executable-path "wakatime-cli"))
   (unless exe
-    (error 'executable "cannot find executable in $PATH, please check your environment setup"))
+    (error 'executable "cannot find executable in \$PATH, please check your environment setup"))
   (define cmd "$exe --entity $filename --language racket --plugin drracket-wakatime --write")
   (set! cmd (if project (string-append cmd " --project $project") cmd))
   (set! cmd (if key (string-append cmd " --key $key") cmd))
@@ -27,3 +27,4 @@
   (when (find-executable-path "wakatime-cli")
     (check-eq? (send-heartbeat #:file "main.rkt" #:project "drracket-wakatime-test")
                (void))))
+
